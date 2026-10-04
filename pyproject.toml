@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "navscope"
+version = "0.1.0"
+description = "Headless mutual-fund analytics and data-quality pipeline"
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Burak Kılınç"}]
+dependencies = ["numpy>=1.24,<3","pandas>=2,<4","openpyxl>=3.1,<4","certifi>=2024"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+
+[project.scripts]
+navscope = "fund_analyzer.pipeline:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+

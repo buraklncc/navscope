@@ -1,0 +1,87 @@
+"""Configuration values for the fund analysis engine."""
+
+from __future__ import annotations
+
+EMA_FAST_PERIOD = 10
+EMA_SLOW_PERIOD = 21
+MACD_FAST_PERIOD = 12
+MACD_SLOW_PERIOD = 26
+MACD_SIGNAL_PERIOD = 9
+RSI_PERIOD = 14
+ATR_LIKE_PERIOD = 14
+ONE_MONTH_DAYS = 21
+
+LABEL_STRONG_BUY = "STRONG BUY"
+LABEL_EARLY_BUY = "EARLY BUY"
+LABEL_HOLD = "HOLD"
+LABEL_WAIT = "WAIT"
+LABEL_SELL = "SELL"
+LABEL_HOLD_RSI_HIGH = "HOLD RSI HIGH"
+LABEL_MISSING_DATA = "MISSING DATA"
+
+LABELS = [
+    "AL",
+    "KADEMELİ AL",
+    "BEKLE",
+    "TUT",
+    "KÂRI KORU",
+    "UZAK DUR",
+    "VERİ EKSİK",
+    "VERİ GÜVENSİZ",
+]
+
+SCORING_WEIGHTS = {
+    "ema10_above_ema21": 2,
+    "ema10_crossed_above_ema21": 2,
+    "macd_above_signal": 1,
+    "histogram_positive": 1,
+    "histogram_increasing": 1,
+    "rsi_50_to_70": 1,
+    "monthly_return_positive": 1,
+    "new_high_1m": 1,
+}
+
+MAX_SCORE = 10
+
+RSI_STRONG_MIN = 50
+RSI_STRONG_MAX = 70
+RSI_HIGH_WARNING_THRESHOLD = 75
+RSI_EXTREME_WARNING_THRESHOLD = 80
+RSI_HIGH_LABEL_THRESHOLD = 75
+
+STRONG_BUY_MIN_SCORE = 8
+EARLY_BUY_MIN_SCORE = 6
+HOLD_MIN_SCORE = 4
+
+STOP_LOSS_LOW_PROFIT_THRESHOLD = 3
+STOP_LOSS_HIGH_PROFIT_THRESHOLD = 6
+STOP_LOSS_LOSING_ATR_MULTIPLIER = 1.5
+STOP_LOSS_MID_PROFIT_ATR_MULTIPLIER = 2
+STOP_LOSS_HIGH_PROFIT_ATR_MULTIPLIER = 1.5
+
+SECTOR_NET_BALANCE_WEIGHTS = {
+    "AL": 2,
+    "KADEMELİ AL": 1,
+    "BEKLE": 0,
+    "TUT": 0,
+    "KÂRI KORU": -1,
+    "UZAK DUR": -2,
+    "VERİ EKSİK": 0,
+    "VERİ GÜVENSİZ": -1,
+    LABEL_STRONG_BUY: 2,
+    LABEL_EARLY_BUY: 1,
+    LABEL_HOLD: -1,
+    LABEL_WAIT: 0,
+    LABEL_SELL: -2,
+    LABEL_HOLD_RSI_HIGH: -1,
+}
+
+TEFAS_BASE_URL = "https://www.tefas.gov.tr"
+TEFAS_PRICE_ENDPOINT = "/api/funds/fonFiyatBilgiGetir"
+TEFAS_FUND_LIST_ENDPOINT = "/api/funds/fonGetiriBazliBilgiGetir"
+TEFAS_SUPPORTED_LOOKBACK_MONTHS = (1, 3, 6, 12, 36, 60)
+TEFAS_REQUEST_DELAY_SECONDS = 0.3
+TEFAS_TIMEOUT_SECONDS = 30
+TEFAS_DEFAULT_FUND_TYPE = "YAT"
+TEFAS_UNKNOWN_FUND_TYPE = "Unknown"
+
